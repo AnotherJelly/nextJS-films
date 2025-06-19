@@ -9,10 +9,10 @@ export type Film = {
   director: string;
   tagline: string;
   imdb: string;
-  description: string;
+  poster: string;
   status: "Plan to Watch" | "Dropped" | "On-Hold" | "Completed" | "Watching";
   ratingMy: 1 | 2 | 3 | 4 | 5 | null;
   date: Date | null;
-  poster: string;
   plot: string;
-};
+  description: string;
+}

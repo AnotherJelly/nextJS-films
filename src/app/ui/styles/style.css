@@ -5,17 +5,69 @@
 .main-page {
   padding: 40px;
 }
+
+/* Search main page */
+.sorting-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
 .search-input {
   padding: 0.5rem 1rem;
-  font-size: 1rem;
   width: 100%;
   max-width: 400px;
-  margin-bottom: 2rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: var(--background-secondary);
 }
+.search-select {
+  position: relative;
+}
+.search-select__btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .5em;
+  padding: .1rem .5rem;
+  cursor: pointer;
+  font-size: 1em;
+  background: var(--background);
+  border: none;
+  transition: .3s;
+}
+.search-select__btn:hover, .search-select__btn:active, .search-select__btn:focus-visible {
+  opacity: .5;
+}
+.search-select__btn svg {
+  fill: var(--foreground);
+  stroke: var(--foreground);
+}
+.search-select__ul {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-secondary);
+  box-shadow: 0 1em 3em var(--opacity-color);
+}
+.search-select__li {
+  list-style: none;
+  cursor: pointer;
+  padding: .5em 1em;
+  transition: .3s;
+}
+.search-select__li.active {
+  opacity: .5;
+}
+.search-select__li:hover, .search-select__li:active, .search-select__li:focus-visible {
+  opacity: .5;
+}
 
+/* Card main page */
 .card-wrapper {
   display: flex;
   flex-direction: row;
@@ -84,8 +136,13 @@
     box-shadow: 0 10px 20px var(--opacity-color);
   }
 }
+@media (max-width:768px) {
+  .card-wrapper {
+    justify-content: center;
+  }
+}
 
-/* Модальное окно */
+/* Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -218,7 +275,7 @@
   }
 }
 
-/* Скелетон карточки */
+/* Skeleton card */
 @keyframes shimmer {
   0% {
     background-position: -250px 0;
