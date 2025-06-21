@@ -5,19 +5,42 @@
 .main-page {
   padding: 40px;
 }
+button {
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--opacity-color);
+  transition: .3s;
+}
+button.button-blue {
+  background-color: var(--color-primary);
+  color: white;
+}
+@media (hover:hover) {
+  button:not(.button-blue):hover {
+    opacity: .7;
+  }
+  button.button-blue:hover {
+    background-color: var(--color-primary-hover);
+  }
+}
 
 /* Search main page */
 .sorting-panel {
+  font-size: 1em;
+  margin-bottom: 2em;
+}
+.sorting-block {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  font-size: 1rem;
-  margin-bottom: 2rem;
 }
 .search-input {
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   width: 100%;
   max-width: 400px;
   border: 1px solid #ccc;
@@ -32,12 +55,13 @@
   flex-direction: row;
   align-items: center;
   gap: .5em;
-  padding: .1rem .5rem;
+  padding: .1em .5em;
   cursor: pointer;
   font-size: 1em;
   background: var(--background);
   border: none;
   transition: .3s;
+  text-wrap: nowrap;
 }
 .search-select__btn:hover, .search-select__btn:active, .search-select__btn:focus-visible {
   opacity: .5;
@@ -65,6 +89,11 @@
 }
 .search-select__li:hover, .search-select__li:active, .search-select__li:focus-visible {
   opacity: .5;
+}
+@media (max-width:768px) {
+  .sorting-panel {
+    flex-direction: column;
+  }
 }
 
 /* Card main page */
@@ -113,7 +142,7 @@
   color: #fff;
 }
 .card-tags .card-tag[data-tag="Sci-Fi"] {
-  background-color: #285195;
+  background-color: var(--color-primary-hover);
 }
 .card-tags .card-tag[data-tag="Thriller"] {
   background-color: #1c815f;
@@ -125,10 +154,10 @@
   background-color: #6f6585;
 }
 .card-tags .card-tag[data-tag="Action"] {
-  background-color: #f97316;
+  background-color: var(--color-green);
 }
 .card-rating {
-  background-color: #9d0000;
+  background-color: var(--color-red);
 }
 @media (hover:hover) {
   .card:hover {
@@ -181,9 +210,17 @@
   width: 100%;
   height: 100%;
 }
+.film-content .film-poster {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-height: 350px;
+  overflow: hidden;
+}
 .film-content img.poster {
   object-fit: cover;
   width: 100%;
+  height: auto;
 }
 .film-content img.img {
   object-fit: contain;
@@ -192,6 +229,13 @@
   max-height: 300px;
   margin-top: -20%;
   border-radius: 20px;
+}
+.film-content .button-edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transform: translate(-50%, 50%);
 }
 .film-header {
   display: flex;
@@ -204,6 +248,8 @@
   text-align: center;
 }
 .film-block {
+  position: relative;
+  z-index: 1;
   padding: 20px;
   font-size: 16px;
   display: flex;
@@ -324,4 +370,76 @@
   width: 25%;
   height: 1.5em;
   margin-right: 8px;
+}
+
+/* Form add*/
+.form-add {
+  margin: 0 auto;
+  padding: 2em;
+  font-size: 16px;
+}
+.form-add h2 {
+  margin-bottom: 1.5em;
+  font-size: 1.5em;
+  text-align: center;
+}
+.form-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2em;
+}
+.form-group {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 0.25em;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.5em;
+  font-size: 1em;
+  border: 1px solid var(--opacity-color);
+  border-radius: 4px;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--foreground);
+  outline: none;
+}
+.main-answer {
+  font-size: 1.5em;
+  text-align: center;
+}
+.form-success {
+  color: var(--color-green);
+}
+.form-error {
+  color: var(--color-red);
+  font-size: 0.875em;
+  margin-top: 0.25em;
+}
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5em;
+  margin-top: 1.5em;
+}
+@media (max-width:1024px) {
+  .form-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width:768px) {
+  .form-content {
+    grid-template-columns: 1fr;
+  }
+  .button-group {
+    flex-direction: column-reverse;
+  }
 }

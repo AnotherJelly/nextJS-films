@@ -3,6 +3,11 @@
   --foreground: black;
   --opacity-color: rgba(0, 0, 0, .2);
   --background-secondary: #ddd;
+
+  --color-primary: #0060d1;
+  --color-primary-hover: #285195;
+  --color-green: #f97316;
+  --color-red: #b00020;
 }
 
 html[data-theme='dark'] {

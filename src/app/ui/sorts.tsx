@@ -2,7 +2,7 @@
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useState, useRef, useEffect } from "react";
 import { Modal } from '@/app/ui/modal';
-import { AddFilmForm } from '@/app/ui/forms';
+import { FilmForm } from '@/app/ui/forms';
 
 export function SortingPanelMain({ inputName, selectName }: { inputName: string; selectName: string; }) {
   const searchParams = useSearchParams();
@@ -36,29 +36,31 @@ export function SortingPanelMain({ inputName, selectName }: { inputName: string;
   }
 
   return (
-    <div className="sorting-panel">
-      <InputText 
-        placeholder='Search by name'
-        onChange={handleChangeInput}
-        value={searchParams.get(`${inputName}`)?.toString()}
-      />
-      <CustomSelect
-        options={{
-          default: "No sort",
-          title: "Alphabet",
-          rating: "Rating",
-          year: "Year"
-        }}
-        valueSelect={searchParams.get(`${selectName}`)?.toString() || "default"}
-        onChange={handleChangeSelect}
-      />
+    <div className="sorting-panel sorting-block">
+      <div className='sorting-block'>
+        <InputText 
+          placeholder='Search by name'
+          onChange={handleChangeInput}
+          value={searchParams.get(`${inputName}`)?.toString()}
+        />
+        <CustomSelect
+          options={{
+            default: "No sort",
+            title: "Alphabet",
+            rating: "Rating",
+            year: "Year"
+          }}
+          valueSelect={searchParams.get(`${selectName}`)?.toString() || "default"}
+          onChange={handleChangeSelect}
+        />
+      </div>
 
-      <button type='button' onClick={() => setOpenModal(true)}>
-        test
+      <button type='button' className='button-blue' onClick={() => setOpenModal(true)}>
+        Add film
       </button>
 
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
-        <AddFilmForm onClose={() => setOpenModal(false)} />
+        <FilmForm onClose={() => setOpenModal(false)} />
       </Modal>
     </div>
   );

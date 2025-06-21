@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import { dataFilms } from "@/app/lib/data";
+import sql from '@/app/lib/db';
 
 export async function GET() {
-  return NextResponse.json(dataFilms);
+  const films = await sql`SELECT * FROM films`;
+  return NextResponse.json(films);
 }

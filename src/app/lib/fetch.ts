@@ -23,3 +23,22 @@ export async function getFilms(): Promise<Film[]> {
     return [];
   }
 }
+
+export async function getFilmById(id: string): Promise<Film | null> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const res = await fetch(`${baseUrl}/api/film/${id}`, { cache: 'no-store' });
+
+    if (!res.ok) {
+      console.error(`Ошибка запроса: ${res.status}`);
+      return null;
+    }
+
+    const data = await res.json();
+
+    return data as Film;
+  } catch (error) {
+    console.error('Ошибка загрузки фильма:', error);
+    return null;
+  }
+}
